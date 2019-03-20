@@ -1,6 +1,16 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+export const ToastBox = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  // margin: 130px 0 40px 0;
+  position: relative;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+`;
+
 export const Toast = styled.li`
   position: relative;
   font-size: 24px;
@@ -8,11 +18,6 @@ export const Toast = styled.li`
   overflow: hidden;
   &:last-child {
     border-bottom: none;
-  }
-
-  &:editing {
-    border-bottom: none;
-    padding: 0;
   }
 `;
 

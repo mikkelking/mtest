@@ -16,36 +16,9 @@ const Demo = props => {
       data: { text: "Eat cheese and drink wine", isDone: false }
     },
     { key: "t5", data: { text: "Go around in Uber", isDone: false } },
-    {
-      key: "t6",
-      data: { text: "Talk with conf attendees", isDone: false }
-    },
     { key: "t7", data: { text: "Show Demo 1", isDone: false } },
-    { key: "t8", data: { text: "Show Demo 2", isDone: false } },
-    {
-      key: "t9",
-      data: { text: "Lament about the state of animation", isDone: false }
-    },
-    { key: "t10", data: { text: "Show Secret Demo", isDone: false } },
-    { key: "t11", data: { text: "Go home", isDone: false } }
+    { key: "t8", data: { text: "Show Demo 2", isDone: false } }
   ]);
-  const [value, setValue] = useState("");
-  const [selected, setSelected] = useState("all");
-
-  // logic from todo, unrelated to animation
-  const handleChange = ({ target: { value } }) => {
-    setValue(value);
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    const newItem = {
-      key: "t" + Date.now(),
-      data: { text: value, isDone: false }
-    };
-    // append at head
-    setTodos([newItem].concat(todos));
-  };
 
   const handleDone = doneKey => {
     setTodos(
@@ -61,24 +34,6 @@ const Demo = props => {
     );
   };
 
-  const handleToggleAll = () => {
-    const allNotDone = todos.every(({ data }) => data.isDone);
-    setTodos(
-      todos.map(({ key, data: { text, isDone } }) => ({
-        key: key,
-        data: { text: text, isDone: !allNotDone }
-      }))
-    );
-  };
-
-  const handleSelect = selected => {
-    setSelected(selected);
-  };
-
-  const handleClearCompleted = () => {
-    setTodos(todos.filter(({ data }) => !data.isDone));
-  };
-
   const handleDestroy = date => {
     setTodos(todos.filter(({ key }) => key !== date));
   };
@@ -92,24 +47,15 @@ const Demo = props => {
   };
 
   const getStyles = () => {
-    return todos
-      .filter(({ data: { isDone, text } }) => {
-        return (
-          text.toUpperCase().indexOf(value.toUpperCase()) >= 0 &&
-          ((selected === "completed" && isDone) ||
-            (selected === "active" && !isDone) ||
-            selected === "all")
-        );
-      })
-      .map((todo, i) => {
-        return {
-          ...todo,
-          style: {
-            height: spring(60, presets.gentle),
-            opacity: spring(1, presets.gentle)
-          }
-        };
-      });
+    return todos.map((todo, i) => {
+      return {
+        ...todo,
+        style: {
+          height: spring(60, presets.gentle),
+          opacity: spring(1, presets.gentle)
+        }
+      };
+    });
   };
 
   const willEnter = () => {
@@ -128,34 +74,25 @@ const Demo = props => {
 
   const itemsLeft = todos.filter(({ data: { isDone } }) => !isDone).length;
   return (
-    <section className="todoapp">
-      <section className="main">
-        <TransitionMotion
-          defaultStyles={getDefaultStyles()}
-          styles={getStyles()}
-          willLeave={willLeave}
-          willEnter={willEnter}
-        >
-          {styles => (
-            <ul className="todo-list">
-              {styles.map(({ key, style, data: { isDone, text } }) => (
-                <Ui.Toast key={key} style={style}>
-                  <div className="view">
-                    <Ui.ToastLabel
-                      completed={isDone}
-                      onClick={() => handleDone(key)}
-                    >
-                      {text}
-                    </Ui.ToastLabel>
-                    <Ui.Destroy onClick={() => handleDestroy(key)} />
-                  </div>
-                </Ui.Toast>
-              ))}
-            </ul>
-          )}
-        </TransitionMotion>
-      </section>
-    </section>
+    <TransitionMotion
+      defaultStyles={getDefaultStyles()}
+      styles={getStyles()}
+      willLeave={willLeave}
+      willEnter={willEnter}
+    >
+      {styles => (
+        <Ui.ToastBox>
+          {styles.map(({ key, style, data: { isDone, text } }) => (
+            <Ui.Toast key={key} style={style}>
+              <Ui.ToastLabel completed={isDone} onClick={() => handleDone(key)}>
+                {text}
+              </Ui.ToastLabel>
+              <Ui.Destroy onClick={() => handleDestroy(key)} />
+            </Ui.Toast>
+          ))}
+        </Ui.ToastBox>
+      )}
+    </TransitionMotion>
   );
 };
 
