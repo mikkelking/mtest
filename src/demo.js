@@ -51,7 +51,7 @@ const Demo = props => {
       return {
         ...todo,
         style: {
-          height: spring(60, presets.gentle),
+          height: spring(76, presets.gentle),
           opacity: spring(1, presets.gentle)
         }
       };
@@ -87,7 +87,7 @@ const Demo = props => {
               <Ui.ToastLabel completed={isDone} onClick={() => handleDone(key)}>
                 {text}
               </Ui.ToastLabel>
-              <Ui.Destroy onClick={() => handleDestroy(key)} />
+              <Ui.Destroy hideX onClick={() => handleDestroy(key)} />
             </Ui.Toast>
           ))}
         </Ui.ToastBox>
