@@ -128,26 +128,7 @@ const Demo = props => {
   const itemsLeft = todos.filter(({ data: { isDone } }) => !isDone).length;
   return (
     <section className="todoapp">
-      <header className="header">
-        <h1>todos</h1>
-        <form onSubmit={handleSubmit}>
-          <input
-            autoFocus={true}
-            className="new-todo"
-            placeholder="What needs to be done?"
-            value={value}
-            onChange={handleChange}
-          />
-        </form>
-      </header>
       <section className="main">
-        <input
-          className="toggle-all"
-          type="checkbox"
-          checked={itemsLeft === 0}
-          style={{ display: todos.length === 0 ? "none" : "inline" }}
-          onChange={handleToggleAll}
-        />
         <TransitionMotion
           defaultStyles={getDefaultStyles()}
           styles={getStyles()}
@@ -181,40 +162,6 @@ const Demo = props => {
           )}
         </TransitionMotion>
       </section>
-      <footer className="footer">
-        <span className="todo-count">
-          <strong>{itemsLeft}</strong> {itemsLeft === 1 ? "item" : "items"} left
-        </span>
-        <ul className="filters">
-          <li>
-            <a
-              className={selected === "all" ? "selected" : ""}
-              onClick={() => handleSelect("all")}
-            >
-              All
-            </a>
-          </li>
-          <li>
-            <a
-              className={selected === "active" ? "selected" : ""}
-              onClick={() => handleSelect("active")}
-            >
-              Active
-            </a>
-          </li>
-          <li>
-            <a
-              className={selected === "completed" ? "selected" : ""}
-              onClick={() => handleSelect("completed")}
-            >
-              Completed
-            </a>
-          </li>
-        </ul>
-        <button className="clear-completed" onClick={handleClearCompleted}>
-          Clear completed
-        </button>
-      </footer>
     </section>
   );
 };
