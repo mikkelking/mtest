@@ -1,5 +1,5 @@
-import React from "react";
-import styled, { css } from "styled-components";
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 export const ToastBox = styled.ul`
   margin: 0;
@@ -7,7 +7,7 @@ export const ToastBox = styled.ul`
   list-style: none;
   background: #f5f5f5;
   position: relative;
-`;
+`
 
 export const Toast = styled.li`
   position: relative;
@@ -16,12 +16,12 @@ export const Toast = styled.li`
   // box-shadow: 0 -1px 0 #ededed;
   // height: calc(97px - 32px);
   overflow: hidden;
-  // margin-bottom: 16px;
+  margin-bottom: 16px;
   background: #fff;
   &:last-child {
     border-bottom: none;
   }
-`;
+`
 
 export const ToastLabel = styled.label`
   white-space: pre;
@@ -37,7 +37,7 @@ export const ToastLabel = styled.label`
       color: #d9d9d9;
       text-decoration: line-through;
     `}
-`;
+`
 
 export const Destroy = styled.button`
   margin: 0;
@@ -74,6 +74,6 @@ export const Destroy = styled.button`
     display: block;
   }
   &:after {
-    content: "×";
+    content: '×';
   }
-`;
+`
