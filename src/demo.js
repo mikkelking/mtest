@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { TransitionMotion, spring, presets } from "react-motion";
+import * as Ui from "./toast-style";
 
 const Demo = props => {
   const [todos, setTodos] = useState([
     // key is creation date
     { key: "t1", data: { text: "Board the plane", isDone: false } },
-    { key: "t2", data: { text: "Sleep", isDone: false } },
+    { key: "t2", data: { text: "Sleep", isDone: true } },
     {
       key: "t3",
       data: { text: "Try to finish conference slides", isDone: false }
@@ -138,19 +139,17 @@ const Demo = props => {
           {styles => (
             <ul className="todo-list">
               {styles.map(({ key, style, data: { isDone, text } }) => (
-                <li
-                  key={key}
-                  style={style}
-                  className={isDone ? "completed" : ""}
-                >
+                <Ui.Toast key={key} style={style}>
                   <div className="view">
-                    <label onClick={() => handleDone(key)}>{text}</label>
-                    <button
-                      className="destroy"
-                      onClick={() => handleDestroy(key)}
-                    />
+                    <Ui.ToastLabel
+                      completed={isDone}
+                      onClick={() => handleDone(key)}
+                    >
+                      {text}
+                    </Ui.ToastLabel>
+                    <Ui.Destroy onClick={() => handleDestroy(key)} />
                   </div>
-                </li>
+                </Ui.Toast>
               ))}
             </ul>
           )}
