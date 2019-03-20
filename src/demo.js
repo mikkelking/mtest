@@ -51,7 +51,7 @@ const Demo = props => {
       return {
         ...todo,
         style: {
-          height: spring(76, presets.gentle),
+          height: spring(60, presets.gentle),
           opacity: spring(1, presets.gentle)
         }
       };
@@ -72,7 +72,6 @@ const Demo = props => {
     };
   };
 
-  const itemsLeft = todos.filter(({ data: { isDone } }) => !isDone).length;
   return (
     <TransitionMotion
       defaultStyles={getDefaultStyles()}

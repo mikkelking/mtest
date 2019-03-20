@@ -16,7 +16,7 @@ export const Toast = styled.li`
   // box-shadow: 0 -1px 0 #ededed;
   // height: calc(97px - 32px);
   overflow: hidden;
-  margin-bottom: 16px;
+  // margin-bottom: 16px;
   background: #fff;
   &:last-child {
     border-bottom: none;
@@ -45,6 +45,7 @@ export const Destroy = styled.button`
   border: 0;
   background: none;
   font-size: 100%;
+  outline: none;
   vertical-align: baseline;
   appearance: none;
   font-smoothing: antialiased;
