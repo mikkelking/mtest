@@ -144,13 +144,7 @@ const Demo = props => {
                   className={isDone ? "completed" : ""}
                 >
                   <div className="view">
-                    <input
-                      className="toggle"
-                      type="checkbox"
-                      onChange={() => handleDone(key)}
-                      checked={isDone}
-                    />
-                    <label>{text}</label>
+                    <label onClick={() => handleDone(key)}>{text}</label>
                     <button
                       className="destroy"
                       onClick={() => handleDestroy(key)}
